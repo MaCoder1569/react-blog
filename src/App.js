@@ -5,10 +5,13 @@ import "./App.css";
 
 function App() {
   let [글제목, 제목변경] = useState(["남자 코트 추천", "여자 코트 추천", "베스트 코트 추천"]);
-  let [따봉, 좋아요] = useState(0);
+  let [따봉, 좋아요] = useState([0,0,0]);
+  let [modal, setModal] = useState(false);
 
-  function 좋아요클릭() {
-    좋아요(따봉 + 1);
+  function 좋아요클릭(index) {
+    let copy = [...따봉]
+    copy[index]=copy[index]+1
+    좋아요(copy);
   }
 
   return (
@@ -36,25 +39,32 @@ function App() {
       >
         제목변경
       </button>
-      <div className="list">
-        <h4>
-          {글제목[0]}{" "}
-          <span className="like" onClick={좋아요클릭}>
-            👍
-          </span>
-          {따봉}
-        </h4>
-        <p>2월 17일 발행</p>
-      </div>
-      <div className="list">
-        <h4>{글제목[1]}</h4>
-        <p>2월 17일 발행</p>
-      </div>
-      <div className="list">
-        <h4>{글제목[2]}</h4>
-        <p>2월 17일 발행</p>
-      </div>
+      {
+        글제목.map((item,index)=>{
+          return (
+            <div className="list" key={index}>
+              <h4><span onClick={()=>{setModal(!modal)}}>{item} </span><span className="like" onClick={()=>{좋아요클릭(index)}}>👍</span>{따봉[index]}</h4>
+              <p>2월 17일 발행</p>
+            </div>
+          )
+        })
+      }
+      {modal == true ? <Modal /> : null}
     </div>
+  );
+}
+
+//둘 다 같음
+//const Modal = () => {}
+function Modal() {
+  return (
+    <>
+      <div className="modal">
+        <h4>제목</h4>
+        <p>날짜</p>
+        <p>상세내용</p>
+      </div>
+    </>
   );
 }
 
