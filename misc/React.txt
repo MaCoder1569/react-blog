@@ -10,6 +10,7 @@ useState
     let [변수,스테이트 변경 함수] = useState(보관할 초기 자료)
     변수는 직접 변경하면 반영안됨, 스테이트 변경 함수 사용
     기존 변수랑 변경 함수의 내용이 같으면 바꾸지 않음 re-rendering X
+    (중요) state 만드는 곳은 state 사용하는 컴포넌트들 중 최상위 컴포넌트에
 
 컴포넌트
     첫글자 대문자로 쓰는게 일반적
@@ -18,6 +19,10 @@ useState
     2. 큰 페이지들 사용
     3. 자주변경되는 것들에 사용
 
+props
+    <자식컴포넌트 작명={state이름}>
+    문자, 변수, 함수 다 가능
+
 
 
 jsx 문법 ==============================
@@ -25,6 +30,7 @@ jsx 문법 ==============================
 class -> className
 
 데이터바인딩은 중괄호 사용 : {}
+    문자, 변수, 함수 다 가능
 
 style="" -> style={object} 사용
     대쉬는 카멜케이스로 ex) font-size -> fontSize
@@ -51,4 +57,7 @@ array/object
 map(function(item,index){})
     자료 개수만큼 실행
     return에 적으면 모아서 array로 돌려줌
+
+e.stopPropagation()
+    상위html로 이벤트 전파를 막음
 
